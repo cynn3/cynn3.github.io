@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+	AngularJS Tables
+</title>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<style>
+    table, th, td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    
+    table tr:nth-child(odd) {
+    background-color: #FFCCCC;
+    }
+    table tr:nth-child(even) {
+    background-color: #ffffff;
+    }
+
+</style>
+    </head>
+<body>
+    <div ng-app="mainApp">
+        Search : <input type="text" placeholder="Search Student" ng-model="subject.name">
+        <br><br>
+        <table ng-controller="studentController">
+            <tr>
+                <th>Roll No.</th>
+                <th>Student Name</th>
+                <th>Marks</th>
+                <th>Grades</th>
+            </tr>
+            <tr ng-repeat="subject in students | filter:subject">
+                <td>{{ $index + 1 }}</td> 
+                <td>{{ subject.name }}</td>
+                <td>{{ subject.marks }}</td>
+                <td>{{ subject.grades }}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        var mainApp = angular.module("mainApp", []);
+        mainApp.controller('studentController', function ($scope){
+           $scope.students = 
+               [
+                   { name: 'Bob', marks: 91, grades: 'A'},
+                   { name: 'John', marks: 98, grades: 'A+'},
+                   { name: 'Christina', marks: 86, grades: 'B'},
+                   { name: 'Maggie', marks: 80, grades: 'B-'},
+                   { name: 'Adam', marks: 75, grades: 'C'},
+                   { name: 'Chaewon', marks: 96, grades: 'A+'},
+                   { name: 'Lee', marks: 65, grades: 'D+'},
+                   { name: 'Oliva', marks: 79, grades: 'C+'},
+                   { name: 'Rose', marks: 88, grades: 'B+'},
+                   { name: 'Chris', marks: 51, grades: 'F'}
+               
+               ]
+        });
+    </script>
+</body>
+</html>
